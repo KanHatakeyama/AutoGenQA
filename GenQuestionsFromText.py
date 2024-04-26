@@ -24,6 +24,7 @@ def main(args):
             record["inst_question"] = q_gen(record["text"])
             record["question"] = bot.ask(record["inst_question"])
             a_gen(record)
+            record["text"]=""
 
             with open(save_path, "a") as f:
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")

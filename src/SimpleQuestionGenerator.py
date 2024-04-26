@@ -9,7 +9,7 @@ question_template_list = [
 ]
 
 class SimpleQuestionGenerator:
-    def __init__(self,max_text_len=3000) -> None:
+    def __init__(self,max_text_len=500) -> None:
         self.max_text_len=max_text_len
         pass
 
@@ -17,8 +17,9 @@ class SimpleQuestionGenerator:
         inst=random.choice(question_template_list)
         inst+="出力には､問題/質問/指示文のみを出力すること｡"
 
-        #text=text[:random.randint(0,len(text))*2]
-        #text=text[int(random.randint(0,len(text))/2):]
+        if len(text)>500:
+            text=text[:random.randint(0,len(text))*2]
+            text=text[int(random.randint(0,len(text))/2):]
         text=text[:self.max_text_len]
         
         return inst+"\n"+text
