@@ -27,7 +27,7 @@ class AnswerGenerator:
             question=inst+": " +record["question"]
             question=question[:self.max_text_len]
             ans=self.bot.ask(question)
-            record["question"]=question
+            record[f"inst_answer_{i}"]=question
             record[f"answer_{i}"]=ans[:self.max_text_len]
 
         return record

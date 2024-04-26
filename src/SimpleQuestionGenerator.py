@@ -15,6 +15,7 @@ class SimpleQuestionGenerator:
 
     def __call__(self, text):
         inst=random.choice(question_template_list)
+        inst+="出力には､問題/質問/指示文のみを出力すること｡"
 
         #text=text[:random.randint(0,len(text))*2]
         #text=text[int(random.randint(0,len(text))/2):]
