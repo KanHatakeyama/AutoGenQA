@@ -21,8 +21,9 @@ class AnswerGenerator:
         for i in range(self.n_answers):
             inst=random.choice(inst_list)
 
-            if random.randint(0,1)==1:
-                inst+="\n回答にあたり､次の文章を参考にしても良い\n"+record["text"]
+            if "text" in record:
+                if random.randint(0,1)==1:
+                    inst+="\n回答にあたり､次の文章を参考にしても良い\n"+record["text"]
 
             question=inst+": " +record["question"]
             question=question[:self.max_text_len]
