@@ -165,3 +165,4 @@ outputs
 wandb
 model
 data
+*.parquet

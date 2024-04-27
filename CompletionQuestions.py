@@ -1,6 +1,7 @@
 # %%
 #ライブラリの自動リロード
 from tqdm import tqdm
+import random
 import pandas as pd
 from src.GGUFBot import GGUFBot
 from src.AnswerGenerator import AnswerGenerator
@@ -29,14 +30,18 @@ path_list=[
     "data/raw_qa/t1.jsonl",
     "data/raw_qa/t2.jsonl",
     "data/raw_qa/a100/out.jsonl",
+    "data/public/databricks-dolly-15k-ja_conv.jsonl",
 ]
 for path in path_list:
     temp_df= pd.read_json(path, orient='records', lines=True)
+    temp_df["database"]=path
     df=pd.concat([df,temp_df])
 
 
 # %%
 records=df.to_dict(orient='records')
+random.shuffle(records)
+
 
 # %%
 out_path="data/completion_records.jsonl"

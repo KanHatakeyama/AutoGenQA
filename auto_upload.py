@@ -43,6 +43,8 @@ def upload():
         cleaned_records.append(record)
 
     df=pd.DataFrame(cleaned_records)
+    #シャッフル
+    df=df.sample(frac=1).reset_index(drop=True)
     parquet_path="hf/cleaned_data.parquet"
     df.to_parquet(parquet_path)
     #df.to_csv("hf/cleaned_data.csv")
@@ -64,7 +66,7 @@ if __name__ == "__main__":
         try:
             upload()
             print("uploaded")
-            time.sleep(3600*24)
+            time.sleep(3600*3)
         except:
             print("error")
             time.sleep(600)
