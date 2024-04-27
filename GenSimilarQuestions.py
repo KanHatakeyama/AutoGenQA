@@ -1,6 +1,7 @@
 # %%
-#ライブラリの自動リロード
 
+#ライブラリの自動リロード
+import time
 from src.GGUFBot import GGUFBot
 from src.HFDataset import HFDataset
 from src.SimpleQuestionGenerator import SimpleQuestionGenerator
@@ -46,7 +47,7 @@ while True:
         with open(out_path, 'a') as f:
             f.write(json.dumps(record,ensure_ascii=False)+"\n")
     except:
-        pass
+        time.sleep(4)
     question=new_question
     #question=question[:random.randint(0,len(question))]
     if random.randint(0,3)==0:
