@@ -1,6 +1,6 @@
 # %%
 #ライブラリの自動リロード
-
+from tqdm import tqdm
 import pandas as pd
 from src.GGUFBot import GGUFBot
 from src.AnswerGenerator import AnswerGenerator
@@ -28,6 +28,7 @@ df=pd.concat([df,temp_df])
 path_list=[
     "data/raw_qa/t1.jsonl",
     "data/raw_qa/t2.jsonl",
+    "data/raw_qa/a100/out.jsonl",
 ]
 for path in path_list:
     temp_df= pd.read_json(path, orient='records', lines=True)
@@ -50,7 +51,13 @@ else:
 # %%
 import copy
 
-for record in records:
+for record in tqdm(records):
+    if "q" in  record.keys():
+        if type(record["q"]) is not str:
+            continue
+        record["question"]=record["q"]
+        record["answer"]=record["a"]
+        #print(record)
     if record["question"] in done_questions:
         print(f"skip {record['question']}")
         continue
