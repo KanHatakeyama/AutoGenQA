@@ -44,10 +44,10 @@ def upload():
 
     df=pd.DataFrame(cleaned_records)
     #シャッフル
-    df=df.sample(frac=1).reset_index(drop=True)
+    #df=df.sample(frac=1).reset_index(drop=True)
     parquet_path="hf/cleaned_data.parquet"
     df.to_parquet(parquet_path)
-    #df.to_csv("hf/cleaned_data.csv")
+    df.to_csv("hf/cleaned_data.csv")
 
 
 
