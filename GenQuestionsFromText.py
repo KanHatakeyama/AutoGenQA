@@ -13,7 +13,7 @@ def main(args):
     bot = GGUFBot(args.model_path, max_new_tokens=args.max_new_tokens, n_ctx=args.max_new_tokens, n_gpu_layers=args.n_layers)
 
     q_gen = SimpleQuestionGenerator()
-    a_gen = AnswerGenerator(bot)
+    a_gen = AnswerGenerator(bot,n_answers=args.n_answers)
 
     save_path = f"data/{args.ds_name.replace('/', '_')}.jsonl"
     while True:
@@ -38,6 +38,7 @@ if __name__ == "__main__":
     parser.add_argument("--n_layers", type=int, default=400, help="Number of model layers to be loaded on GPU")
     parser.add_argument("--max_new_tokens", type=int, default=4000, help="Maximum number of new tokens")
     parser.add_argument("--preload_iter", type=int, default=1000, help="Number of preload iterations")
+    parser.add_argument("--n_answers", type=int, default=1, help="Number of answers")
 
     args = parser.parse_args()
     main(args)
