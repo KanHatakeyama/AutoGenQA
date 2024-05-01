@@ -69,7 +69,7 @@ if __name__ == "__main__":
             upload()
             print("uploaded")
             time.sleep(3600*3)
-        except:
-            print("error")
+        except Exception as e:
+            print("error",e)
             time.sleep(600)
 

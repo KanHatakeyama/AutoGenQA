@@ -29,6 +29,8 @@ noise_list=noise_texts.split("\n")
 noise_list=[n for n in noise_list if n]
 
 def clean_question(text:str):
+    if text is None:
+        return ""
     for noise in noise_list:
         text=text.replace(noise,"")
 
