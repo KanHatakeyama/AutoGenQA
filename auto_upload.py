@@ -24,6 +24,8 @@ def upload():
     for original_record in all_records:
         record={}
         record["question"]=clean_question(original_record["question"])
+        if "answer_1" not in original_record:
+            original_record["answer_1"]=""
 
         if "ans0" in original_record:
             record["answer_0"]=original_record["ans0"]
