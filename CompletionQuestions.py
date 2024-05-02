@@ -26,6 +26,7 @@ def load_questions():
 
 
     path_list=[
+        "data/raw_qa/alpaca.jsonl",
         "data/raw_qa/t1.jsonl",
         "data/raw_qa/t2.jsonl",
         "data/raw_qa/a100/out.jsonl",
@@ -46,10 +47,17 @@ def load_questions():
         done_questions=list(done_df["question"].values)
     else:
         done_questions=[]
+
+    undone_questions=[]
+    for record in records:
+        if record["question"] not in done_questions:
+            undone_questions.append(record)
+    return undone_questions,done_questions
     return records,done_questions
 
 count=0
 while True:
+    print("start loop")
     records,done_questions=load_questions()
     for record in tqdm(records):
         if "q" in  record.keys():
