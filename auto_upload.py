@@ -1,6 +1,6 @@
 import pandas as pd
 import json
-import pandas as pd
+import copy
 import glob
 from src.clean_records import clean_question
 from huggingface_hub import HfApi, logging
@@ -41,8 +41,42 @@ def upload():
         else:
             record["database"]="misc"
 
-        
-        cleaned_records.append(record)
+        #2つの回答について､それぞれ別に登録する
+        r1=copy.deepcopy(record)
+        r1["answer"]=r1["answer_0"]
+        r1.pop("answer_0")
+        r1.pop("answer_1") 
+        cleaned_records.append(r1)
+
+        r2=copy.deepcopy(record)
+        r2["answer"]=str(r2["answer_1"])
+        r2.pop("answer_0")
+        r2.pop("answer_1") 
+        if len(r2["answer"])>2:
+            cleaned_records.append(r2)
+
+
+    #アノテーションデータの読み込み
+    qa_path="hf/qa.jsonl"
+    if os.path.exists(qa_path):
+        qa_to_score={}
+        with open(qa_path,"r") as f:
+            for line in f:
+                r=json.loads(line)
+                qa=r["qa"]
+                score=r["score"]
+                qa_to_score[qa]=float(score)
+
+    for record in cleaned_records:
+        q=record["question"]
+        a=record["answer"]
+        qa=str(q)+str(a)
+
+        if qa in qa_to_score:
+            record["score"]=float(qa_to_score[qa])
+        else:
+            record["score"]=-2
+
 
     df=pd.DataFrame(cleaned_records)
     #シャッフル
