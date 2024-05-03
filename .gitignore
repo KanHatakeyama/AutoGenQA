@@ -168,3 +168,4 @@ data
 *.parquet
 hf
 cleaned_data.csv
+nohup.out
