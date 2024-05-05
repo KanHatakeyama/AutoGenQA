@@ -1,4 +1,5 @@
 import pandas as pd
+import time
 import random
 import json
 from src.GGUFEvaluator import GGUFEvaluator
@@ -38,6 +39,7 @@ while True:
         count+=1
 
         if count>1000:
+            time.sleep(30)
             break
 
         q=record["question"]
