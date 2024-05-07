@@ -44,7 +44,7 @@ while True:
 
         q=record["question"]
         a=record["answer"]
-        qa=q+a
+        qa=str(q)+str(a)
 
         if qa in qa_to_score:
             continue
