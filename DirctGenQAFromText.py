@@ -28,10 +28,9 @@ def gen_prompt(inst,text):
     """
     return prompt_template
 
-def gen_qa(bot,text):
+def gen_qa(r):
 
-    prompt=gen_prompt(random.choice(inst_list)[:1000],text)
-    r=bot.ask(prompt)
+
     q,a=r.split("回答文")
     q=q.replace("質問文","").strip()
     a=a.strip()
@@ -63,14 +62,18 @@ def main(args):
             record = {}
             record["text"] = next(ds)
             record["database"] = args.ds_name
+            prompt=gen_prompt(random.choice(inst_list)[:1000],record["text"])
+            r=bot.ask(prompt)
+
+            record["text"]=""
             try:
-                q,a=gen_qa(bot,record["text"])
+                q,a=gen_qa(r)
             except Exception as e:
                 print("error", e)
-                continue
+                record["text"]=r
+                q,a="",""
             record["question"]=q
             record["answer_0"]=a
-            record["text"]=""
 
             with open(save_path, "a") as f:
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")
