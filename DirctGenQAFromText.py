@@ -62,14 +62,14 @@ def main(args):
             record = {}
             record["text"] = next(ds)
             record["database"] = args.ds_name
-            prompt=gen_prompt(random.choice(inst_list)[:1000],record["text"])
+            prompt=gen_prompt(random.choice(inst_list),record["text"][:1000])
             r=bot.ask(prompt)
 
             record["text"]=""
             try:
                 q,a=gen_qa(r)
             except Exception as e:
-                print("error", e)
+                print("error: invalid Q&A fromat", e)
                 record["text"]=r
                 q,a="",""
             record["question"]=q
