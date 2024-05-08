@@ -38,7 +38,7 @@ while True:
     for record in tqdm(records):
         count+=1
 
-        if count>1000:
+        if count>10000:
             time.sleep(30)
             break
 

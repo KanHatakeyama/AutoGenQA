@@ -6,6 +6,7 @@ from src.clean_records import clean_question
 from huggingface_hub import HfApi, logging
 import os
 import time
+from datasets import load_dataset
 os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1"
 
 def upload():
@@ -18,7 +19,13 @@ def upload():
                 record=json.loads(line)
                 all_records.append(record)
 
-    original_record=all_records[0]
+    # from huggingface
+    print("loading huggingface dataset...")
+    ds=load_dataset("kanhatakeyama/AutoWikiQA") ["train"]
+
+    for record in ds:
+        all_records.append(record)
+
     cleaned_records=[]
 
     for original_record in all_records:
