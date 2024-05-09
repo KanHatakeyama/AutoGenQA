@@ -33,7 +33,8 @@ def upload():
         record["question"]=clean_question(original_record["question"])
         if "answer_1" not in original_record:
             original_record["answer_1"]=""
-
+        if "answer" in original_record:
+            original_record["answer_0"]=original_record["answer"]
         if "ans0" in original_record:
             record["answer_0"]=original_record["ans0"]
             record["answer_1"]=original_record["ans1"]
@@ -49,6 +50,8 @@ def upload():
             record["database"]="misc"
 
         #2つの回答について､それぞれ別に登録する
+        if "answer_0" not in record:
+            continue
         r1=copy.deepcopy(record)
         r1["answer"]=r1["answer_0"]
         r1.pop("answer_0")
