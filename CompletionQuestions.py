@@ -76,5 +76,5 @@ while True:
             f.write(json.dumps(record, ensure_ascii=False)+'\n')
 
         count+=1
-        if count>30:
+        if count>100:
             break
