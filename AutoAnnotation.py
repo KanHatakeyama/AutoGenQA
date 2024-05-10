@@ -48,7 +48,10 @@ while True:
 
         if qa in qa_to_score:
             continue
-        score=evaluator(q,a)
+        if a.find("None")>=0 and len(a)<6:
+            score=str(1)
+        else:
+            score=evaluator(q,a)
         qa_to_score[(q+a)]=score
         print(score,q,a)
         with open(qa_path,"a") as f:
