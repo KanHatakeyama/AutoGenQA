@@ -169,6 +169,4 @@ data
 hf
 cleaned_data.csv
 nohup.out
-data_arena
-data_orca
-data_multi_orca
+data_*
