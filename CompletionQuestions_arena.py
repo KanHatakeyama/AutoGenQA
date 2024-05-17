@@ -11,15 +11,15 @@ import os
 import copy
 
 
-out_path="data_orca/completion_records.jsonl"
+out_path="data_arena/completion_records.jsonl"
 # %%
 
 print("init original dataset")
-ds=load_dataset("atsushi3110/cross-lingual-openorcha-830k-en-ja",split="train")
+ds=load_dataset("cyberagent/chatbot-arena-ja-calm2-7b-chat-experimental",split="train")
 df=pd.DataFrame(ds)
-df["database"]="atsushi3110/cross-lingual-openorcha-830k-en-ja_"+df["id/en"]
-df["question"]=df["question/ja"]
-df=df.drop(columns=["response/en","system_prompt/en","question/ja","response/ja","question/en","id/en"],axis=1)
+df["database"]="cyberagent/chatbot-arena-ja-calm2-7b-chat-experimental"#+df["__index_level_0__"]
+df["question"]=df["prompt"]
+df=df.drop(columns=["chosen","rejected","__index_level_0__","prompt"],axis=1)
 records=df.to_dict(orient='records')
  
 def load_questions():

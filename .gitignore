@@ -169,3 +169,6 @@ data
 hf
 cleaned_data.csv
 nohup.out
+*sh.o*
+*sh.e*
+data_*
