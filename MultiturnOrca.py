@@ -11,7 +11,12 @@ from datetime import datetime
 current_time_no_symbols = datetime.now().strftime(
     "%Y-%m-%d %H:%M:%S").replace("-", "").replace(":", "").replace(" ", "")
 out_path = f"data_multi_orca/completion_records{current_time_no_symbols}.jsonl"
-# %%
+
+print("init model")
+bot = GGUFBot(model_path="../ChatServer/model/Mixtral-8x22B-Instruct-v0.1.Q5_K_M-00001-of-00004.gguf",
+              max_new_tokens=4000, n_ctx=4000, n_gpu_layers=50)
+print("fin initiating model")
+
 
 print("init original dataset")
 ds = load_dataset(
@@ -22,12 +27,6 @@ df["question"] = df["question/ja"]
 df = df.drop(columns=["response/en", "system_prompt/en",
              "question/ja", "response/ja", "question/en", "id/en"], axis=1)
 records = df.to_dict(orient='records')
-
-
-print("init model")
-bot = GGUFBot(model_path="/mnt/hdd/python/2024/ChatServer/model/Mixtral-8x22B-Instruct-v0.1.Q5_K_M-00001-of-00004.gguf",
-              max_new_tokens=4000, n_ctx=4000, n_gpu_layers=400)
-print("fin initiating model")
 
 
 while True:
