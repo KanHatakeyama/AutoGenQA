@@ -7,10 +7,14 @@ from src.GGUFBot import GGUFBot
 from datasets import load_dataset
 import json
 from datetime import datetime
+import time
+time.sleep(random.randint(0, 120))
 
 current_time_no_symbols = datetime.now().strftime(
     "%Y-%m-%d %H:%M:%S").replace("-", "").replace(":", "").replace(" ", "")
-out_path = f"data_eng_orca/completion_records{current_time_no_symbols}.jsonl"
+random_number = random.randint(1, 10000)  # 1から100までのランダムな整数を生成
+random_number_str = str(random_number)
+out_path = f"data_eng_orca/completion_records_{random_number_str}_{current_time_no_symbols}.jsonl"
 
 print("init model")
 bot = GGUFBot(model_path="../../model/Mixtral-8x22B-Instruct-v0.1.Q8_0-00001-of-00004.gguf",
