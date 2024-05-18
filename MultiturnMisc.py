@@ -17,7 +17,7 @@ out_path = f"data_multi_misc/completion_records{current_time_no_symbols}.jsonl"
 
 print("init model")
 bot = GGUFBot(model_path="../ChatServer/model/Mixtral-8x22B-Instruct-v0.1.Q5_K_M-00001-of-00004.gguf",
-              max_new_tokens=4000, n_ctx=4000, n_gpu_layers=50)
+              max_new_tokens=4000, n_ctx=4000, n_gpu_layers=52)
 print("fin initiating model")
 
 
@@ -95,6 +95,7 @@ while True:
 ・応答1､指示2､応答2が空欄になっているので､埋めてください
 ・会話の中身は､ランダムに決定してください
 ・テンプレートは厳守すること
+・応答はステップ・バイ・ステップに､丁寧に行うこと
 
 [テンプレート]
 ### 指示1:{q}
