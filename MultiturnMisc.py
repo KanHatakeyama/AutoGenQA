@@ -69,7 +69,23 @@ for record in ds:
             {"question":q,
             "database":"kunishou/databricks-dolly-15k-ja"},
         )
+#chatbotarena
+try:
 
+    ds=load_dataset("cyberagent/chatbot-arena-ja-calm2-7b-chat-experimental",split="train")
+    for record in ds:
+        q=record["prompt"]
+        if q=="":
+            continue
+
+        if q not in q_list:
+            q_list.append(q)
+            records.append(
+                {"question":q,
+                "database":"cyberagent/chatbot-arena-ja-calm2-7b-chat-experimental"},
+            )
+except Exception as e:
+    print(e)
 while True:
     count = 0
     random.shuffle(records)
