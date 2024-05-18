@@ -13,7 +13,7 @@ time.sleep(random.randint(0, 5))
 
 current_time_no_symbols = datetime.now().strftime(
     "%Y-%m-%d %H:%M:%S").replace("-", "").replace(":", "").replace(" ", "")
-out_path = f"data_multi_oasst/completion_records{current_time_no_symbols}.jsonl"
+out_path = f"data_multi_misc/completion_records{current_time_no_symbols}.jsonl"
 
 print("init model")
 bot = GGUFBot(model_path="../ChatServer/model/Mixtral-8x22B-Instruct-v0.1.Q5_K_M-00001-of-00004.gguf",
