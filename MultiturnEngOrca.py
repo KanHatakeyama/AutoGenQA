@@ -25,8 +25,7 @@ print("fin initiating model")
 print("init original dataset")
 
 # openorca
-ds = load_dataset(
-    "Open-Orca/OpenOrca", split="train")
+ds = load_dataset("Open-Orca/OpenOrca", split="train")
 df = pd.DataFrame(ds)
 df["database"] = "Open-Orca/OpenOrca_"+df["id"]
 df = df.drop(columns=["system_prompt", "response", "id"], axis=1)
