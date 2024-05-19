@@ -1,7 +1,7 @@
 #!/bin/sh
 #$ -cwd
 #$ -l node_h=1
-#$ -l h_rt=24:00:00
+#$ -l h_rt=9:00:00
 cd /gs/fs/tga-hatakeyama/
 cd code/AutoGenQA/
 module load cuda

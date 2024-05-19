@@ -7,6 +7,7 @@ from huggingface_hub import HfApi, logging
 import os
 import time
 from datasets import load_dataset
+from tqdm import tqdm
 os.environ["HF_HUB_ENABLE_HF_TRANSFER"] = "1"
 
 def upload():
@@ -22,7 +23,7 @@ def upload():
     # from huggingface
 
     cleaned_records=[]
-    for original_record in all_records:
+    for original_record in tqdm(all_records):
         record={}
         record["question"]=clean_question(original_record["question"])
         for k in ["inst_question","inst_answer_0","text"]:

@@ -9,9 +9,15 @@ from datasets import load_dataset
 import json
 import os
 import copy
+from datetime import datetime
+import time
 
+time.sleep(random.randint(0, 15))
+current_time_no_symbols = datetime.now().strftime(
+    "%Y-%m-%d %H:%M:%S").replace("-", "").replace(":", "").replace(" ", "")
+#out_path = f"data_multi_misc/completion_records{current_time_no_symbols}.jsonl"
 
-out_path="data_orca/completion_records.jsonl"
+out_path=f"data_orca/completion_records_{current_time_no_symbols}.jsonl"
 # %%
 
 print("init original dataset")
@@ -52,17 +58,17 @@ print("fin initiating model")
 
 a_gen = AnswerGenerator(bot,n_answers=1)
 while True:
-    count=0
+    #count=0
     random.shuffle(records)
-    print("start loop. loading done questions")
-    done_questions=load_questions()
+    #print("start loop. loading done questions")
+    #done_questions=load_questions()
     #records,done_questions=load_questions()
-    print("loaded done questions")
-    print("start loop")
+    #print("loaded done questions")
+    #print("start loop")
 
-    if len(records)==0:
-        print("everything finished")
-        break
+    #if len(records)==0:
+    #    print("everything finished")
+    #    break
     for record in tqdm(records):
         print(record)
         if "q" in  record.keys():
@@ -71,10 +77,10 @@ while True:
             record["question"]=record["q"]
             record["answer"]=record["a"]
             #print(record)
-        if record["question"] in done_questions:
-            print(f"skip {record['question']}")
-            #records.remove(record)
-            continue
+        #if record["question"] in done_questions:
+        #    print(f"skip {record['question']}")
+        #    #records.remove(record)
+        #    continue
         try:
             a_gen(record)
         except Exception as e:
@@ -84,6 +90,6 @@ while True:
         with open(out_path, 'a') as f:
             f.write(json.dumps(record, ensure_ascii=False)+'\n')
 
-        count+=1
-        if count>1000:
-            break
+        #count+=1
+        #if count>1000:
+        #    break
