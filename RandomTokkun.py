@@ -89,7 +89,7 @@ def random_algorithm0():
     keywords=get_random_keyword()
     random_ints=[random.randint(1,100) for _ in range(random.randint(1,10))]
     random_floats=[random.uniform(-1000,1000) for _ in range(random.randint(1,10))]
-    random_hensu=["x","y","z"]
+    random_hensu=["x","y","z","w"]
     length = random.randint(1, 12)
     random_hensu2 = random.sample(string.ascii_lowercase, length)
 
@@ -98,7 +98,7 @@ def random_algorithm0():
     num_keywords=",".join(num_strings)
     
     problem=f"""あなたは{genre}の教師です｡
-・{class_}の生成や編集、処理、解析に関するタスクを生成しなさい｡
+・{class_}の生成や変更、解析(最大値や最小値の分析など)に関するタスクを生成しなさい｡
 ・フォーマットは厳守すること
 ・用いるキーワード: {keywords}
 ・用いる数字: {num_keywords}
@@ -149,7 +149,7 @@ def random_algorithm4():
     keywords=get_random_keyword()
    
     problem=f"""あなたは{class_}の{genre}の教師です｡
-・日本語のタスクを生成しなさい(◯◯の立場に立って、というタイプのタスクにすること)
+・タスクを生成しなさい(◯◯の立場に立って、というタイプのタスクにすること)
 ・フォーマットは厳守すること
 ・シチュエーション: {keywords}
 
@@ -171,7 +171,7 @@ def random_algorithm5():
     keywords=get_random_keyword()
 
     problem=f"""あなたは{class_}の教師です｡
-・高度な日本語のタスクを生成しなさい
+・高度なタスクを生成しなさい
 ・フォーマットは厳守すること
 ・シチュエーション: {keywords}
 
@@ -194,7 +194,7 @@ def random_algorithm6():
     keywords=get_random_keyword()
 
     problem=f"""あなたは{class_}の教師です｡
-・厳密性を要求される日本語のタスクを生成しなさい
+・厳密性を要求されるタスクを生成しなさい
 ・フォーマットは厳守すること
 ・キーワード: {keywords}
 
