@@ -98,7 +98,7 @@ def random_algorithm0():
     num_keywords=",".join(num_strings)
     
     problem=f"""あなたは{genre}の教師です｡
-・アルゴリズムとコード生成に関する{class_}のタスクを生成しなさい｡
+・{class_}の生成や編集、処理、解析に関するタスクを生成しなさい｡
 ・フォーマットは厳守すること
 ・用いるキーワード: {keywords}
 ・用いる数字: {num_keywords}
@@ -229,7 +229,7 @@ print(random_algorithm7())
 # %%
 def random_algorithm():
     return random.choice([
-        random_algorithm0(),
+        random_algorithm0(),random_algorithm0(),random_algorithm0(),
         random_algorithm1(),random_algorithm2(),random_algorithm3(),random_algorithm4(),
                           random_algorithm5(),random_algorithm6(),random_algorithm7()])
 random_algorithm()
