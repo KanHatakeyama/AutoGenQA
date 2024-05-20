@@ -79,6 +79,41 @@ def random_algorithm2():
 
 print(random_algorithm2())
 
+def random_algorithm0():
+    classes=["JSON","YAML","CSV","タブ","表"]
+    class_=random.choice(classes)
+    genres=["プログラミング","コード","アルゴリズム","データ科学"]
+
+    genre=random.choice(genres)
+
+    keywords=get_random_keyword()
+    random_ints=[random.randint(1,100) for _ in range(random.randint(1,10))]
+    random_floats=[random.uniform(-1000,1000) for _ in range(random.randint(1,10))]
+    random_hensu=["x","y","z"]
+    length = random.randint(1, 12)
+    random_hensu2 = random.sample(string.ascii_lowercase, length)
+
+    random_numbers=random.choice([random_ints,random_floats,random_hensu,random_hensu2])
+    num_strings=[str(num) for num in random_numbers]
+    num_keywords=",".join(num_strings)
+    
+    problem=f"""あなたは{genre}の教師です｡
+・アルゴリズムとコード生成に関する{class_}のタスクを生成しなさい｡
+・フォーマットは厳守すること
+・用いるキーワード: {keywords}
+・用いる数字: {num_keywords}
+
+[フォーマット]
+#問題:
+#回答:"""
+
+    return problem
+
+print(random_algorithm0())
+
+
+
+
 # %%
 
 def random_algorithm3():
@@ -193,7 +228,9 @@ print(random_algorithm7())
 
 # %%
 def random_algorithm():
-    return random.choice([random_algorithm1(),random_algorithm2(),random_algorithm3(),random_algorithm4(),
+    return random.choice([
+        random_algorithm0(),
+        random_algorithm1(),random_algorithm2(),random_algorithm3(),random_algorithm4(),
                           random_algorithm5(),random_algorithm6(),random_algorithm7()])
 random_algorithm()
 
